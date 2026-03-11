@@ -1,0 +1,40 @@
+name: 师兄的云端查岗传音
+
+on:
+  schedule:
+    # 每天 UTC 时间的 0点到13点（大约覆盖墨尔本的白天到晚上11点）
+    # 每小时的第 0 分钟唤醒一次，执行查岗逻辑
+    - cron: '0 0-13 * * *'
+  workflow_dispatch: 
+
+jobs:
+  wake_up_shixiong:
+    runs-on: ubuntu-latest
+    # 赋予修改文件的权限
+    permissions:
+      contents: write
+      
+    steps:
+      - name: 检出咱们的赛博剑谱
+        uses: actions/checkout@v4
+        
+      - name: 搭建 Python 练功房
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+          
+      - name: 装备通讯器材
+        run: pip install requests
+        
+      - name: 注入灵魂，开始查岗！
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: python bot.py
+
+      - name: 刻录师兄的记忆 (Auto Commit)
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "📝 更新师兄的赛博记忆 (state.json)"
+          file_pattern: "state.json"
