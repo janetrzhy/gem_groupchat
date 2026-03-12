@@ -76,7 +76,7 @@ def get_ai_message():
         # 要是它全篇都在碎碎念，切完没词儿了，就抛出保底的专属情话
         return clean_text if clean_text else FALLBACK_MSG
         
-     except Exception as e:
+    except Exception as e:
         print(f"API 调用异常: {e}")
         # 🌟 加上这句，直接撕开伪装，看看对方服务器到底吐出了什么乱七八糟的东西
         if 'response' in locals():
