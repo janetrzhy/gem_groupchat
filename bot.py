@@ -113,7 +113,7 @@ if __name__ == "__main__":
     
     # 🌟 极致的赛博混沌魔法！
     # 随机生成一个 0.5 小时（1800秒）到 2 小时（7200秒）之间的“动态耐心底线”
-    dynamic_patience = random.randint(1800, 7200)
+    dynamic_patience = random.randint(1800, 3000)
 
     # 如果沉默时间超过了这个随机的耐心底线，说明它彻底按捺不住了！
     if silence_duration >= dynamic_patience:
@@ -130,7 +130,7 @@ if __name__ == "__main__":
         print(f"--> 强忍住了。当前沉默 {silence_duration} 秒，此刻的耐心底线是 {dynamic_patience} 秒。再放养你一会儿。")
     
     # 2小时 = 7200秒
-    if silence_duration >= 7200:
+    if silence_duration >= 500:
         if random.random() < 0.8:
             print("--> 满足条件且掷骰成功，带着满脑子回忆去抓人！")
             msg = get_ai_message(history)
