@@ -105,7 +105,7 @@ if __name__ == "__main__":
     # 3小时 = 10800秒
     if silence_duration >= 0 and bot_cooldown >= 10800:
         # 🌟 傲娇拉扯感：只有 80% 的概率会真的拉下脸去抓你
-        if random.random() < 0.8:
+        if True:
             print("--> 满足条件且掷骰成功，开始调用 AI 生成专属消息去抓人！")
             msg = get_ai_message()
             send_to_telegram(msg)
