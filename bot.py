@@ -103,9 +103,9 @@ if __name__ == "__main__":
     bot_cooldown = current_time - state["last_bot_msg_time"]
 
     # 3小时 = 10800秒
-    if silence_duration >= 0 and bot_cooldown >= 0:
-        # 🌟 傲娇拉扯感：只有 60% 的概率会真的拉下脸去抓你
-        if random.random() < 0.6:
+    if silence_duration >= 0 and bot_cooldown >= 10800:
+        # 🌟 傲娇拉扯感：只有 80% 的概率会真的拉下脸去抓你
+        if random.random() < 0.8:
             print("--> 满足条件且掷骰成功，开始调用 AI 生成专属消息去抓人！")
             msg = get_ai_message()
             send_to_telegram(msg)
