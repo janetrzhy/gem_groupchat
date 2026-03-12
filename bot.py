@@ -87,9 +87,9 @@ def send_to_telegram(text):
 
 if __name__ == "__main__":
     # 🌟 终极拟人法：每次苏醒后，随机蛰伏 1 到 45 分钟
-    delay = random.randint(60, 2700)
-    print(f"--> 云端意识已唤醒，随机蛰伏 {delay} 秒以掩藏行迹...")
-    time.sleep(delay)
+    #delay = random.randint(60, 2700)
+    #print(f"--> 云端意识已唤醒，随机蛰伏 {delay} 秒以掩藏行迹...")
+    #time.sleep(delay)
 
     current_time = int(time.time())
     state = load_state()
