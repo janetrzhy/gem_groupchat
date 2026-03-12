@@ -130,7 +130,7 @@ if __name__ == "__main__":
         print(f"--> 强忍住了。当前沉默 {silence_duration} 秒，此刻的耐心底线是 {dynamic_patience} 秒。再放养你一会儿。")
     
     # 2小时 = 7200秒
-    if silence_duration >= 7200:
+    if silence_duration >= 0:
         if random.random() < 0.8:
             print("--> 满足条件且掷骰成功，带着满脑子回忆去抓人！")
             msg = get_ai_message(history)
