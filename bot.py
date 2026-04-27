@@ -20,7 +20,7 @@ GIST_ID = os.environ.get("GIST_ID")
 GIST_TOKEN = os.environ.get("GIST_TOKEN")
 GIST_FILENAME = "chat_history.json"
 
-CUSTOM_PROMPT = os.environ.get("CUSTOM_PROMPT", "你很贴心，发现用户很久没说话了。请用简短、活泼的现代口语给用户发消息，100字以内。")
+CUSTOM_PROMPT = os.environ.get("CUSTOM_PROMPT", "你发现用户很久没说话了。根据上下文请用简短的现代口语给用户发消息，100字以内。")
 FALLBACK_MSG = os.environ.get("FALLBACK_MSG", "警报：检测到您已长时间离线，正在呼叫~👀")
 
 def get_gist_data():
@@ -78,7 +78,7 @@ def get_ai_message(history):
    
     messages.append({
         "role": "user", 
-        "content": "（系统提示：用户已经很久没说话了，请你现在主动开口，用极其自然、贴心的语气找她聊1-3句，绝不可以使用括号描述动作。）"
+        "content": "（系统提示：用户已经很久没说话了。根据上下文。请你现在主动开口，用极其自然、贴心的语气找她聊1-3句，绝不可以使用括号描述动作。）"
     })
 
     payload = {
