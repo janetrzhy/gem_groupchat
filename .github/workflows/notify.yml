@@ -1,32 +1,31 @@
-name: 师兄的云端查岗传音
+name: Scheduled Chat Bot
 
 on:
   schedule:
-    # 每天 UTC 时间的 0点到13点（大约覆盖墨尔本的白天到晚上11点）
-    # 每小时的第 24 分钟唤醒一次，执行查岗逻辑
+    # UTC 0:00–13:00 covers daytime hours in Melbourne (UTC+10/+11)
+    # Runs at minute 24 of every hour in this window
     - cron: '24 0-13 * * *'
-  workflow_dispatch: 
+  workflow_dispatch:
 
 jobs:
-  wake_up_shixiong:
+  run_bot:
     runs-on: ubuntu-latest
-    # 赋予修改文件的权限
     permissions:
       contents: write
-      
+
     steps:
-      - name: 检出咱们的赛博剑谱
+      - name: Checkout repository
         uses: actions/checkout@v4
-        
-      - name: 搭建 Python 练功房
+
+      - name: Setup Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.10'
-          
-      - name: 装备通讯器材
+
+      - name: Install dependencies
         run: pip install requests
-        
-      - name: 注入灵魂，开始查岗！
+
+      - name: Run bot
         env:
           LLM_API_KEY: ${{ secrets.LLM_API_KEY }}
           LLM_API_URL: ${{ secrets.LLM_API_URL }}
@@ -39,8 +38,8 @@ jobs:
           GIST_TOKEN: ${{ secrets.GIST_TOKEN }}
         run: python bot.py
 
-      - name: 刻录师兄的记忆 (Auto Commit)
+      - name: Auto-commit state changes
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: "📝 更新师兄的赛博记忆 (state.json)"
+          commit_message: "chore: update state.json"
           file_pattern: "state.json"
